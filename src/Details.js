@@ -20,9 +20,9 @@ import npm from "./assets/techstack/npm.png";
 import postman from "./assets/techstack/postman.png";
 import figma from "./assets/techstack/figma.png";
 // Porject Images
-import projectImage1 from "./assets/projects/project1.jpg";
-import projectImage2 from "./assets/projects/project2.jpg";
-import projectImage3 from "./assets/projects/project3.jpg";
+import projectImage1 from "./assets/projects/Project1.png";
+import projectImage2 from "./assets/projects/Project2.png";
+import projectImage3 from "./assets/projects/Project3.png";
 import projectImage4 from "./assets/projects/project4.jpg";
 import projectImage5 from "./assets/projects/project5.jpg";
 import projectImage6 from "./assets/projects/project6.jpg";
@@ -141,21 +141,27 @@ export const techStackDetails = {
 // Enter your Project Details here
 export const projectDetails = [
   {
-    title: "Project title 1",
+    title: "Cerebrum FK UNAIR",
     image: projectImage1,
-    description: `This is sample project description random things are here in description This is sample
-project lorem ipsum generator for dummy content`,
-    techstack: "HTML/CSS, JavaScript",
+    description: `This website is created to help student organization assesing first semester student. In this project me as fullstack developer and helped by 2 other members.`,
+    techstack: "Laravel, Tailwind, mySQL",
+    previewLink: "http://raporkaderisasicerebrum.pro/",
+    githubLink: "https://github.com",
+  },
+  {
+    title: "Portofolio V2",
+    image: projectImage2,
+    description: `This website is created when I was learning React JS. Domain of last portofolio is expired and I think needs to be upgrade while learning React JS.`,
+    techstack: "React JS, Tailwind",
     previewLink: "https://google.com",
     githubLink: "https://github.com",
   },
   {
-    title: "Project title 2",
-    image: projectImage2,
-    description: `This is sample project description random things are here in description This is sample
-project lorem ipsum generator for dummy content`,
-    techstack: "HTML/CSS, JavaScript",
-    previewLink: "https://google.com",
+    title: "Portofolio V1",
+    image: projectImage3,
+    description: `This website is created when I was learning web programming. using basic html and framework css (bootstrap) and the UI is quite messy.`,
+    techstack: "HTML, Bootstrap, JavaScript",
+    previewLink: "http://dentabramasta.xyz",
     githubLink: "https://github.com",
   },
   {

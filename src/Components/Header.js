@@ -48,6 +48,11 @@ function Header() {
               Contact
             </NavLink>
           </li>
+          <li>
+            <a href="./Pavan_MG_Resume.pdf" download="" class="mt-5 md:mt-0 btn bg-greenbg text-green-text text-xs inline-block rounded-3xl px-3 py-1 min-w-fit">
+              CV
+            </a>
+          </li>
         </ul>
         <ul className="flex justify-evenly items-center my-5 md:my-0 md:space-x-5 md:mr-5">
           <li>
