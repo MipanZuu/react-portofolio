@@ -7,25 +7,25 @@ import profile from "./assets/profile.png";
 // Tech stack images
 import html from "./assets/techstack/html.png";
 import css from "./assets/techstack/css.png";
-import sass from "./assets/techstack/sass.png";
 import js from "./assets/techstack/js.png";
 import react from "./assets/techstack/react.png";
-import redux from "./assets/techstack/redux.png";
 import tailwind from "./assets/techstack/tailwind.png";
 import bootstrap from "./assets/techstack/bootstrap.png";
 import vscode from "./assets/techstack/vscode.png";
 import github from "./assets/techstack/github.png";
 import git from "./assets/techstack/git.png";
 import npm from "./assets/techstack/npm.png";
-import postman from "./assets/techstack/postman.png";
 import figma from "./assets/techstack/figma.png";
+import laravel from "./assets/techstack/laravel.png";
+import mySQL from "./assets/techstack/mySQL.png";
+
 // Porject Images
 import projectImage1 from "./assets/projects/Project1.png";
 import projectImage2 from "./assets/projects/Project2.png";
 import projectImage3 from "./assets/projects/Project3.png";
-import projectImage4 from "./assets/projects/project4.jpg";
-import projectImage5 from "./assets/projects/project5.jpg";
-import projectImage6 from "./assets/projects/project6.jpg";
+import projectImage4 from "./assets/projects/Project4.png";
+import projectImage5 from "./assets/projects/Project5.png";
+import projectImage6 from "./assets/projects/Project6.png";
 
 // Logos anjay
 export const logos = {
@@ -126,12 +126,11 @@ export const techStackDetails = {
   css: css,
   js: js,
   react: react,
-  redux: redux,
-  sass: sass,
   tailwind: tailwind,
   bootstrap: bootstrap,
+  laravel: laravel,
+  mySQL: mySQL,
   vscode: vscode,
-  postman: postman,
   npm: npm,
   git: git,
   github: github,
@@ -149,56 +148,44 @@ export const projectDetails = [
     githubLink: "https://github.com",
   },
   {
-    title: "Portofolio V2",
+    title: "Laundry Management System",
     image: projectImage2,
+    description: `This website is created when I was did final project database management. In this project me as fullstack developer and helped by 2 other members.`,
+    techstack: "PHP, mySQL, Bootstrap",
+    previewLink: "https://google.com",
+    githubLink: "https://github.com/MipanZuu/LaundryMBDfinal",
+  },
+  {
+    title: "Portofolio V2",
+    image: projectImage3,
     description: `This website is created when I was learning React JS. Domain of last portofolio is expired and I think needs to be upgrade while learning React JS.`,
     techstack: "React JS, Tailwind",
     previewLink: "https://google.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/MipanZuu/react-portofolio",
   },
   {
     title: "Portofolio V1",
-    image: projectImage3,
+    image: projectImage4,
     description: `This website is created when I was learning web programming. using basic html and framework css (bootstrap) and the UI is quite messy.`,
     techstack: "HTML, Bootstrap, JavaScript",
     previewLink: "http://dentabramasta.xyz",
     githubLink: "https://github.com",
   },
   {
-    title: "Project title 3",
-    image: projectImage3,
-    description: `This is sample project description random things are here in description This is sample
-project lorem ipsum generator for dummy content`,
-    techstack: "HTML/CSS, JavaScript",
-    previewLink: "https://google.com",
-    githubLink: "https://github.com",
-  },
-  {
-    title: "Project title 4",
-    image: projectImage4,
-    description: `This is sample project description random things are here in description This is sample
-project lorem ipsum generator for dummy content`,
-    techstack: "HTML/CSS, JavaScript",
-    previewLink: "https://google.com",
-    githubLink: "https://github.com",
-  },
-  {
-    title: "Project title 5",
+    title: "Basic Media Schooling Website",
     image: projectImage5,
-    description: `This is sample project description random things are here in description This is sample
-project lorem ipsum generator for dummy content`,
-    techstack: "HTML/CSS, JavaScript",
+    description: `This website is created when I was in seminar of Basic Media Schooling. I joined group 8 and created some website to share the event.`,
+    techstack: "HTML, CSS, JS",
     previewLink: "https://google.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/MipanZuu/BMS-Website/tree/main/BMS",
   },
   {
-    title: "Project title 6",
+    title: "Bromo Website",
     image: projectImage6,
-    description: `This is sample project description random things are here in description This is sample
-project lorem ipsum generator for dummy content`,
-    techstack: "HTML/CSS, JavaScript",
+    description: `This website is created when I was did final project Basic Website Programming in dicoding. and I created to share the beauty of bromo`,
+    techstack: "HTML, CSS, JS",
     previewLink: "https://google.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/MipanZuu/Bromo-Website/tree/main/bromo%202",
   },
 ];
 
