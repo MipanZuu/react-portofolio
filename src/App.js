@@ -6,17 +6,8 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Projects from "./Pages/Projects";
 import Technologies from "./Pages/Technologies";
-import Loader from "./Components/Loader";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/* <PreLoader1 /> */}
-        {/* <PreLoader2 /> */}
-        <Loader />
-      </header>
-    </div>
-  );
   return (
     <Router>
       <Header />

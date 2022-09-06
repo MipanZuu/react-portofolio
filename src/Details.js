@@ -18,6 +18,7 @@ import npm from "./assets/techstack/npm.png";
 import figma from "./assets/techstack/figma.png";
 import laravel from "./assets/techstack/laravel.png";
 import mySQL from "./assets/techstack/mySQL.png";
+import pdf from "./assets/projects/CV_Denta.pdf";
 
 // Porject Images
 import projectImage1 from "./assets/projects/Project1.png";
@@ -191,6 +192,10 @@ export const projectDetails = [
 
 // Enter your Contact Details here
 export const contactDetails = {
-  email: "hi@example.com",
-  phone: "+91 12345 67890",
+  email: "denta.dent53@gmail.com",
+  instagram: "https://www.instagram.com/dentabramastaa/",
+};
+
+export const downloadPdf = {
+  pdf: pdf,
 };
