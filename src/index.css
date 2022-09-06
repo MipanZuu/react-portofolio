@@ -17,8 +17,9 @@
 }
 
 .text-content {
-  dark: text-light-content text-dark-content;
+  @apply dark:text-light-content text-dark-content;
 }
+
 body {
   overflow-x: hidden;
 }
