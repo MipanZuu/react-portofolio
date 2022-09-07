@@ -1,6 +1,7 @@
 {
   "name": "portofolio-denta",
   "version": "0.1.0",
+  "homepage": "http://dentabramasta.com/portofolio",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.7.0",

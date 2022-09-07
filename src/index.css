@@ -27,3 +27,10 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+nav a.active {
+  background: -webkit-linear-gradient(rgb(41, 89, 202), rgb(66, 234, 97));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 5px;
+}

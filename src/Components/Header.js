@@ -25,27 +25,27 @@ function Header() {
       <nav className={` ${!isOpen ? "hidden" : null} text-center md:flex justify-between`}>
         <ul className="dark:text-light-content font-medium md:flex items-center md:space-x-5 md:mr-10">
           <li className="pb-1 md:pb-0">
-            <NavLink to="/" onClick={toggleClass}>
+            <NavLink to="/" onClick={toggleClass} activeClassName="active">
               Home
             </NavLink>
           </li>
           <li className="pb-1 md:pb-0">
-            <NavLink to="/about" onClick={toggleClass}>
+            <NavLink to="/about" onClick={toggleClass} activeClassName="active">
               About
             </NavLink>
           </li>
           <li className="pb-1 md:pb-0">
-            <NavLink to="/technologies" onClick={toggleClass}>
+            <NavLink to="/technologies" onClick={toggleClass} activeClassName="active">
               Technologies
             </NavLink>
           </li>
           <li className="pb-1 md:pb-0">
-            <NavLink to="/projects" onClick={toggleClass}>
+            <NavLink to="/projects" onClick={toggleClass} activeClassName="active">
               Projects
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" onClick={toggleClass}>
+            <NavLink to="/contact" onClick={toggleClass} activeClassName="active">
               Contact
             </NavLink>
           </li>
