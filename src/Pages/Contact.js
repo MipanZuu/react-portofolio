@@ -20,9 +20,9 @@ function Contact() {
                 </a>
               </h3>
             </div>
-            <input className="bg-dark-heading dark:bg-light-heading text-dark-heading dark:text-light-heading p-2 rounded-lg" type="text" placeholder="Name" name="name" />
-            <input className="my-4 p-2 bg-dark-heading dark:bg-light-heading text-dark-heading dark:text-light-heading rounded-lg" type="email" placeholder="Email" name="email" />
-            <textarea className="bg-dark-heading dark:bg-light-heading text-dark-heading dark:text-light-heading p-2 rounded-lg" name="message" rows="10" placeholder="Message"></textarea>
+            <input className="bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading p-2 rounded-lg" type="text" placeholder="Name" name="name" />
+            <input className="my-4 p-2 bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading rounded-lg" type="email" placeholder="Email" name="email" />
+            <textarea className="bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading p-2 rounded-lg" name="message" rows="10" placeholder="Message"></textarea>
             <button className="text-dark-heading dark:text-light-heading border-dark-heading dark:border-light-heading border-2 rounded-lg bg-gradient-to-b hover:from-blue-500 hover:to-green-500 px-4 py-3 my-8 mx-auto flex items-center">
               Let's Collaborate ✨
             </button>
