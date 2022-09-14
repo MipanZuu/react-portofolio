@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { contactDetails } from "../Details";
+import validator from "validator";
 
 function Contact() {
   const { email, instagram } = contactDetails;
+  const [emailError, setEmailError] = useState("");
+  const validateEmail = (e) => {
+    var email = e.target.value;
+
+    if (validator.isEmail(email)) {
+      setEmailError("Valid Email :)");
+    } else {
+      setEmailError("Enter valid Email!");
+    }
+  };
+
   return (
     <main className="container mx-auto max-width pt-10 mb-20">
       <section>
@@ -21,7 +33,15 @@ function Contact() {
               </h3>
             </div>
             <input className="bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading p-2 rounded-lg" type="text" placeholder="Name" name="name" />
-            <input className="my-4 p-2 bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading rounded-lg" type="email" placeholder="Email" name="email" />
+            <input className="my-4 p-2 bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading rounded-lg" type="text" placeholder="Email" name="email" id="userEmail" onChange={(e) => validateEmail(e)} />{" "}
+            <span
+              style={{
+                fontWeight: "bold",
+                color: "red",
+              }}
+            >
+              {emailError}
+            </span>
             <textarea className="bg-dark-heading dark:bg-light-heading text-light-heading dark:text-dark-heading p-2 rounded-lg" name="message" rows="10" placeholder="Message"></textarea>
             <button className="text-dark-heading dark:text-light-heading border-dark-heading dark:border-light-heading border-2 rounded-lg bg-gradient-to-b hover:from-blue-500 hover:to-green-500 px-4 py-3 my-8 mx-auto flex items-center">
               Let's Collaborate ✨
