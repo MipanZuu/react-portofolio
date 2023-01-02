@@ -27,6 +27,8 @@ import projectImage3 from "./assets/projects/Project3.png";
 import projectImage4 from "./assets/projects/Project4.png";
 import projectImage5 from "./assets/projects/Project5.png";
 import projectImage6 from "./assets/projects/Project6.png";
+import projectImage7 from "./assets/projects/Project7.png";
+import projectImage8 from "./assets/projects/Project8.png";
 
 // Logos anjay
 export const logos = {
@@ -53,11 +55,25 @@ export const socialMediaUrl = {
 // Enter your Work Experience here
 export const workDetails = [
   {
+    Position: "Website Developer",
+    Company: `FTEIC Faculty in ITS`,
+    Location: "Surabaya",
+    Type: "Internship",
+    Duration: "January 2023 - Current",
+  },
+  {
+    Position: "Website Developer",
+    Company: `IMT Atlantique`,
+    Location: "Nantes, France",
+    Type: "Internship",
+    Duration: "October 2022 - Current",
+  },
+  {
     Position: "Fullstack Developer",
     Company: `FK Unair`,
     Location: "Surabaya",
     Type: "Freelance",
-    Duration: "July 2022 - September 2022",
+    Duration: "July 2022 - Current",
   },
   {
     Position: "Lab Administrator",
@@ -140,6 +156,22 @@ export const techStackDetails = {
 
 // Enter your Project Details here
 export const projectDetails = [
+  {
+    title: "FP Pweb",
+    image: projectImage8,
+    description: `This website is created to be a final project of Pweb course. this website is simple e-commerce website with checkout system pages with simple features.`,
+    techstack: "HTML, CSS, JQuery, mySQL, Bootstrap",
+    previewLink: "https://github.com/MipanZuu/FP-Pweb-IUP-",
+    githubLink: "https://github.com/MipanZuu/FP-Pweb-IUP-",
+  },
+  {
+    title: "FP MPPL",
+    image: projectImage7,
+    description: `This website is created to be a final project of MPPL course. this website is like duolingo system but the languages are javanese, sundanese, malay and indo.`,
+    techstack: "Laravel, Tailwind, mySQL",
+    previewLink: "https://github.com/MipanZuu/MPPL-SawadiKap",
+    githubLink: "https://github.com/MipanZuu/MPPL-SawadiKap",
+  },
   {
     title: "Cerebrum FK UNAIR",
     image: projectImage1,
