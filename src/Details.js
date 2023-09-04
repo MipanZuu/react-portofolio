@@ -62,18 +62,25 @@ export const workDetails = [
     Duration: "January 2023 - Current",
   },
   {
+    Position: "Teaching Assistant of Data Structure IUP 2022",
+    Company: `Department of Informatics`,
+    Location: "Sepuluh Nopember Institute of Technology",
+    Type: "Part-Time",
+    Duration: "February 2023 - July 2023",
+  },
+  {
     Position: "Website Developer",
     Company: `IMT Atlantique`,
     Location: "Nantes, France",
     Type: "Internship",
-    Duration: "October 2022 - Current",
+    Duration: "October 2022 - January 2023",
   },
   {
     Position: "Fullstack Developer",
     Company: `FK Unair`,
     Location: "Surabaya",
     Type: "Freelance",
-    Duration: "July 2022 - Current",
+    Duration: "July 2022 - January 2023",
   },
   {
     Position: "Lab Administrator",
@@ -94,7 +101,7 @@ export const workDetails = [
     Company: `Department of Informatics`,
     Location: "Sepuluh Nopember Institute of Technology",
     Type: "Part-Time",
-    Duration: "September 2022 - Present",
+    Duration: "September 2022 - January 2023",
   },
   {
     Position: "Teaching Assistant of Data Structure IUP 2021",
@@ -114,6 +121,13 @@ export const workDetails = [
 
 // Enter your Education Details here
 export const eduDetails = [
+  {
+    Position: "Fontys University of Applied Sciences",
+    Company: "ICT-Software Engineering",
+    Location: "Eindhoven",
+    Type: "Double Degree Student",
+    Duration: "September 2023 - Present",
+  },
   {
     Position: "Sepuluh Nopember Institute of Technology",
     Company: "Informatics",
