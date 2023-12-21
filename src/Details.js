@@ -18,7 +18,7 @@ import npm from "./assets/techstack/npm.png";
 import figma from "./assets/techstack/figma.png";
 import laravel from "./assets/techstack/laravel.png";
 import mySQL from "./assets/techstack/mySQL.png";
-import pdf from "./assets/projects/CV_Denta_2023.pdf";
+import pdf from "./assets/projects/CV_Denta Bramasta Hidayat.pdf";
 
 // Porject Images
 import projectImage1 from "./assets/projects/Project1.png";
