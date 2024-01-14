@@ -30,22 +30,27 @@ function Header() {
             </NavLink>
           </li>
           <li className="pb-1 md:pb-0">
-            <NavLink to="/about" onClick={toggleClass} activeClassName="active">
+            <NavLink to="/About" onClick={toggleClass} activeClassName="active">
               About
             </NavLink>
           </li>
           <li className="pb-1 md:pb-0">
-            <NavLink to="/technologies" onClick={toggleClass} activeClassName="active">
+            <NavLink to="/Technologies" onClick={toggleClass} activeClassName="active">
               Technologies
             </NavLink>
           </li>
           <li className="pb-1 md:pb-0">
-            <NavLink to="/projects" onClick={toggleClass} activeClassName="active">
+            <NavLink to="/Projects" onClick={toggleClass} activeClassName="active">
               Projects
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" onClick={toggleClass} activeClassName="active">
+            <NavLink to="/Template" onClick={toggleClass} activeClassName="active">
+              Template
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/Contact" onClick={toggleClass} activeClassName="active">
               Contact
             </NavLink>
           </li>
