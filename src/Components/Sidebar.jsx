@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Sidebar = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isGuideOpen, setIsGuideOpen] = useState(false);
+    const [isComponentsOpen, setIsComponentsOpen] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -10,6 +11,10 @@ const Sidebar = ({ children }) => {
 
     const toggleGuide = () => {
         setIsGuideOpen(!isGuideOpen);
+    };
+
+    const toggleComponents = () => {
+        setIsComponentsOpen(!isComponentsOpen);
     };
 
     return (
@@ -41,6 +46,28 @@ const Sidebar = ({ children }) => {
                                     <li>
                                         <a href="/Template/Themes" className="dark:text-light-content">
                                             Theme
+                                        </a>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>
+                        <li>
+                            <span
+                                className="block text-gray-800 dark:text-gray-400 cursor-pointer w-full dark:bg-gray-800 p-2 rounded-lg bg-light-heading"
+                                onClick={toggleComponents}
+                            >
+                                Components
+                            </span>
+                            {isComponentsOpen && (
+                                <ul className="pl-4 space-y-1">
+                                    <li>
+                                        <a href="/Template/Header" className="dark:text-light-content">
+                                            Header
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Template/Footer" className="dark:text-light-content">
+                                            Footer
                                         </a>
                                     </li>
                                 </ul>

@@ -269,9 +269,9 @@ export default {
                 </div>
             </div>
             <h2 className="text-2xl font-bold pt-6 my-4 dark:text-light-heading">
-    <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text cursor-pointer">
-      Resources
-    </span>
+                <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text cursor-pointer">
+                  Resources
+                </span>
             </h2>
 
             <ul className="list-disc text-content pl-6 italic">

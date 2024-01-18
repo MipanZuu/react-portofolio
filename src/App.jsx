@@ -12,6 +12,7 @@ import "./transitions.css";
 import Template from "./Pages/Template/Template";
 import InstallmentsPage from "./Pages/Template/InstallmentsPage";
 import ThemesPage from "./Pages/Template/ThemesPage";
+import HeaderPage from "./Pages/Template/HeaderPage";
 
 function App() {
     return (
@@ -112,6 +113,20 @@ function App() {
                                 timeout={300}
                             >
                                 <ThemesPage />
+                            </CSSTransition>
+                        </TransitionGroup>
+                    }
+                />
+                <Route
+                    path="/Template/Header"
+                    element={
+                        <TransitionGroup>
+                            <CSSTransition
+                                key="Header"
+                                classNames="fade"
+                                timeout={300}
+                            >
+                                <HeaderPage />
                             </CSSTransition>
                         </TransitionGroup>
                     }
