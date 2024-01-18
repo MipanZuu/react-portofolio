@@ -30,20 +30,6 @@ const Sidebar = ({ children }) => {
                                 onClick={toggleGuide}
                             >
                                 Guides
-                                <svg
-                                    className="w-5 h-5 inline-block ml-1 -mt-1"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M19 9l-7 7-7-7"
-                                    ></path>
-                                </svg>
                             </span>
                             {isGuideOpen && (
                                 <ul className="pl-4 space-y-1">
@@ -53,7 +39,7 @@ const Sidebar = ({ children }) => {
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="dark:text-light-content">
+                                        <a href="/Template/Themes" className="dark:text-light-content">
                                             Theme
                                         </a>
                                     </li>
@@ -88,7 +74,7 @@ const Sidebar = ({ children }) => {
                     </svg>
                 </button>
 
-                <div>
+                <div className="pb-6">
                     {children}
                 </div>
             </div>

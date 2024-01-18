@@ -11,6 +11,7 @@ import Technologies from "./Pages/Technologies";
 import "./transitions.css";
 import Template from "./Pages/Template/Template";
 import InstallmentsPage from "./Pages/Template/InstallmentsPage";
+import ThemesPage from "./Pages/Template/ThemesPage";
 
 function App() {
     return (
@@ -97,6 +98,20 @@ function App() {
                                 timeout={300}
                             >
                                 <InstallmentsPage />
+                            </CSSTransition>
+                        </TransitionGroup>
+                    }
+                />
+                <Route
+                    path="/Template/Themes"
+                    element={
+                        <TransitionGroup>
+                            <CSSTransition
+                                key="Theme"
+                                classNames="fade"
+                                timeout={300}
+                            >
+                                <ThemesPage />
                             </CSSTransition>
                         </TransitionGroup>
                     }

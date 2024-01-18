@@ -1,15 +1,15 @@
 import React from "react";
 import Sidebar from "../../Components/Sidebar";
-import Installments from "../../Components/Template/Installments";
+import Themes from "../../Components/Template/Themes";
 
-function Template() {
+function ThemesPage() {
     return (
         <Sidebar>
             <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 overflow-x-auto">
-                <Installments />
+                <Themes />
             </div>
         </Sidebar>
     );
 }
 
-export default Template;
+export default ThemesPage;
