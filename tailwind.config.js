@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: "Poppins, sans-serif",
+        secondary: "Ubuntu",
       },
       colors: {
         "light-content": "#A7A7A7",
@@ -13,7 +14,8 @@ module.exports = {
         "dark-mode": "#191919",
         "dark-card": "#363636",
         "green-text": "#018C0F",
-        greenbg: "#D7FFE0",
+        "greenbg": "#D7FFE0",
+        "fortext": "#d8e6e3",
       },
     },
   },

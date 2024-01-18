@@ -18,6 +18,12 @@ import npm from "./assets/techstack/npm.png";
 import figma from "./assets/techstack/figma.png";
 import laravel from "./assets/techstack/laravel.png";
 import mySQL from "./assets/techstack/mySQL.png";
+import spring from "./assets/techstack/springboot.png";
+import webstorm from "./assets/techstack/webstorm.png"
+import intellij from "./assets/techstack/Intellij.png"
+import c from "./assets/techstack/c.png"
+import cpp from "./assets/techstack/cpp.png"
+import python from "./assets/techstack/python.png"
 import pdf from "./assets/projects/CV_Denta Bramasta Hidayat.pdf";
 
 // Porject Images
@@ -137,14 +143,14 @@ export const eduDetails = [
   },
   {
     Position: "SMAN 1 Bangkalan",
-    Company: "Sains",
+    Company: "Science",
     Location: "Bangkalan",
     Type: "Student",
     Duration: "July 2017 - June 2020",
   },
   {
     Position: "SMPN 2 Bangkalan",
-    Company: "Sains",
+    Company: "Science",
     Location: "Bangkalan",
     Type: "Student",
     Duration: "July 2014 - June 2017",
@@ -166,6 +172,12 @@ export const techStackDetails = {
   git: git,
   github: github,
   figma: figma,
+  spring: spring,
+  webstorm: webstorm,
+  intellij: intellij,
+  c:c,
+  cpp:cpp,
+  python:python,
 };
 
 // Enter your Project Details here

@@ -1,4 +1,3 @@
-// App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -9,7 +8,9 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Projects from "./Pages/Projects";
 import Technologies from "./Pages/Technologies";
-import "./transitions.css"; // Import the CSS file
+import "./transitions.css";
+import Template from "./Pages/Template/Template";
+import InstallmentsPage from "./Pages/Template/InstallmentsPage";
 
 function App() {
     return (
@@ -73,7 +74,35 @@ function App() {
                     }
                 />
                 <Route
-                    path="/technologies"
+                    path="/Template"
+                    element={
+                        <TransitionGroup>
+                            <CSSTransition
+                                key="Template"
+                                classNames="fade"
+                                timeout={300}
+                            >
+                                <Template />
+                            </CSSTransition>
+                        </TransitionGroup>
+                    }
+                />
+                <Route
+                    path="/Template/Installments"
+                    element={
+                        <TransitionGroup>
+                            <CSSTransition
+                                key="Installments"
+                                classNames="fade"
+                                timeout={300}
+                            >
+                                <InstallmentsPage />
+                            </CSSTransition>
+                        </TransitionGroup>
+                    }
+                />
+                <Route
+                    path="/Technologies"
                     element={
                         <TransitionGroup>
                             <CSSTransition
