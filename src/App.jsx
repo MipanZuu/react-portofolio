@@ -90,11 +90,11 @@ function App() {
                     }
                 />
                 <Route
-                    path="/Template/Installments"
+                    path="/Template/Guides/Installments"
                     element={
                         <TransitionGroup>
                             <CSSTransition
-                                key="Installments"
+                                key="/Template/Guides/Installments"
                                 classNames="fade"
                                 timeout={300}
                             >
@@ -104,11 +104,11 @@ function App() {
                     }
                 />
                 <Route
-                    path="/Template/Themes"
+                    path="/Template/Guides/Themes"
                     element={
                         <TransitionGroup>
                             <CSSTransition
-                                key="Theme"
+                                key="/Template/Guides/Themes"
                                 classNames="fade"
                                 timeout={300}
                             >
@@ -118,11 +118,11 @@ function App() {
                     }
                 />
                 <Route
-                    path="/Template/Header"
+                    path="/Template/Components/Header"
                     element={
                         <TransitionGroup>
                             <CSSTransition
-                                key="Header"
+                                key="/Template/Components/Header"
                                 classNames="fade"
                                 timeout={300}
                             >

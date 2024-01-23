@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -39,14 +40,14 @@ const Sidebar = ({ children }) => {
                             {isGuideOpen && (
                                 <ul className="pl-4 space-y-1">
                                     <li>
-                                        <a href="/Template/Installments" className="dark:text-light-content">
+                                        <NavLink to="/Template/Guides/Installments" className="dark:text-light-content">
                                             Installments
-                                        </a>
+                                        </NavLink>
                                     </li>
                                     <li>
-                                        <a href="/Template/Themes" className="dark:text-light-content">
+                                        <NavLink to="/Template/Guides/Themes" className="dark:text-light-content">
                                             Theme
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                             )}
@@ -61,14 +62,14 @@ const Sidebar = ({ children }) => {
                             {isComponentsOpen && (
                                 <ul className="pl-4 space-y-1">
                                     <li>
-                                        <a href="/Template/Header" className="dark:text-light-content">
+                                        <NavLink to="/Template/Components/Header" className="dark:text-light-content">
                                             Header
-                                        </a>
+                                        </NavLink>
                                     </li>
                                     <li>
-                                        <a href="/Template/Footer" className="dark:text-light-content">
+                                        <NavLink to="/Template/Components/Footer" className="dark:text-light-content">
                                             Footer
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                             )}

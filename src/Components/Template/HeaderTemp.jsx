@@ -3,52 +3,6 @@ import {NavLink} from "react-router-dom";
 import {logos} from "../../Details";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Resizable } from "react-resizable";
-
-const ResizableColumn = ({ initialWidth, minWidth, maxWidth, children }) => {
-    const [width, setWidth] = useState(initialWidth);
-    const [isResizing, setIsResizing] = useState(false);
-
-    const handleMouseDown = (event) => {
-        setIsResizing(true);
-
-        const handleMouseMove = (e) => {
-            setWidth(Math.min(maxWidth, Math.max(minWidth, width + e.clientX - event.clientX)));
-        };
-
-        const handleMouseUp = () => {
-            setIsResizing(false);
-            document.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseup", handleMouseUp);
-        };
-
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", handleMouseUp);
-    };
-
-    return (
-        <div style={{ position: "relative", width: `${width}px`, flex: "0 0 auto" }}>
-            {children}
-            <div
-                style={{
-                    position: "absolute",
-                    userSelect: "none",
-                    width: "12px",
-                    height: "100%",
-                    top: 0,
-                    cursor: "col-resize",
-                    right: "-12px",
-                }}
-                onMouseDown={handleMouseDown}
-            >
-                <svg width="6" height="14" viewBox="0 0 6 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="2" height="14" rx="1"></rect>
-                    <rect x="4" width="2" height="14" rx="1"></rect>
-                </svg>
-            </div>
-        </div>
-    );
-};
 
 function HeaderTemp() {
     const [showCode, setShowCode] = useState(false);
