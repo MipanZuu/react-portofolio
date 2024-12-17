@@ -9,55 +9,23 @@ function Home() {
   const h13 = useRef();
   const myimageref = useRef();
   useEffect(() => {
-    const tl = gsap.timeline();
-    tl.from(
-      h11.current,
+    const tl = gsap.timeline({ defaults: { duration: 2, ease: "Power3.easeOut" } });
+    tl.from([h11.current, h12.current, h13.current], {
+      x: "-100%",
+      opacity: 0,
+      stagger: 0.2,
+    }).from(
+      myimageref.current,
       {
-        x: "-100%",
-        delay: 0.8,
+        x: "200%",
         opacity: 0,
-        duration: 2,
-        ease: "Power3.easeOut",
       },
       "<"
-    )
-      .from(
-        h12.current,
-        {
-          x: "-100%",
-          delay: 0.5,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      )
-      .from(
-        h13.current,
-        {
-          x: "-100%",
-          delay: 0.1,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      )
-      .from(
-        myimageref.current,
-        {
-          x: "200%",
-          delay: 0.5,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      );
+    );
   }, []);
 
   return (
-    <main className="container mx-auto max-width section md:flex justify-between items-center">
+    <main className="container mx-auto max-width section md:flex justify-between items-center gap-10">
       <div>
         <h1 ref={h11} className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold">
           Hello, 👋<br></br>My Name is<br></br>
@@ -70,7 +38,13 @@ function Home() {
         </h2>
       </div>
       <div className="mt-5 md:mt-0">
-        <img ref={myimageref} className="w-1/2 lg:w-full md:ml-auto" src={img} alt="Denta" />
+      <img
+        ref={myimageref}
+        className="w-1/2 lg:w-full md:ml-auto"
+        src={img}
+        alt={`Portrait of ${name}`}
+        loading="lazy"
+      />
       </div>
     </main>
   );
