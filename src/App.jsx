@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Header from "./Components/Header";
@@ -13,8 +13,11 @@ import Template from "./Pages/Template/Template";
 import InstallmentsPage from "./Pages/Template/InstallmentsPage";
 import ThemesPage from "./Pages/Template/ThemesPage";
 import HeaderPage from "./Pages/Template/HeaderPage";
+import Greetings from "./Pages/Greetings";
+
 
 function App() {
+    const [showWelcome, setShowWelcome] = useState(true);
     return (
         <Router>
             <Header />
@@ -125,6 +128,11 @@ function App() {
                 />
             </Routes>
             <Footer />
+            {showWelcome && (
+          <div className="absolute inset-0 z-50">
+            <Greetings onComplete={() => setShowWelcome(false)} />
+          </div>
+        )}
         </Router>
     );
 }

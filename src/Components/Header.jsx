@@ -1,19 +1,97 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { logos, socialMediaUrl, downloadPdf } from "../Details";
+import { NavLink, useLocation } from "react-router-dom";
+import { logos, socialMediaUrl } from "../Details";
+import github from "../assets/github.svg";
+import linkedin from "../assets/linkedin.svg";
+import gsap from "gsap";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import ComputerOutlinedIcon from '@mui/icons-material/ComputerOutlined';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState("Home");
+  const [isDark, setIsDark] = useState(localStorage.getItem("theme") === "dark");
+  const location = useLocation();
 
-  const { linkedin, github } = socialMediaUrl;
-  const { pdf } = downloadPdf;
+  const getIconForRoute = (route) => {
+    switch (route.toLowerCase()) {
+      case "home":
+        return <HomeOutlinedIcon className="text-green-400" fontSize="medium" />;
+      case "about":
+        return <InfoOutlinedIcon className="text-green-400" fontSize="medium" />;
+      case "technologies":
+        return (
+          <ComputerOutlinedIcon className="text-green-400" fontSize="medium" />
+        );
+      case "projects":
+        return (
+          <BookOutlinedIcon className="text-green-400" fontSize="medium" />
+        );
+      case "contact":
+        return (
+          <MailOutlineOutlinedIcon className="text-green-400" fontSize="medium" />
+        );
+      default:
+        return null; // Default behavior if no icon is found
+    }
+  };
 
-  // Toggle the mobile menu
-  const toggleClass = () => {
-    setIsOpen(!isOpen);
+  useEffect(() => {
+    const route = location.pathname === "/" ? "Home" : location.pathname.slice(1);
+    setCurrentRoute(route);
+
+    // Collapse the Dynamic Island automatically
+    setIsExpanded(false);
+  }, [location]);
+
+  // GSAP animations for smooth transitions
+  useEffect(() => {
+    if (isExpanded) {
+      animateExpand();
+    } else {
+      animateCollapse();
+    }
+  }, [isExpanded]);
+
+  // GSAP animations for smooth transitions
+  const animateExpand = () => {
+    const tl = gsap.timeline();
+
+    // Border transition with GSAP
+    tl.to(".dynamic-container", {
+      borderColor: "rgba(255, 255, 255, 0.4)",
+      boxShadow: "0px 0px 20px rgba(0, 255, 0, 0.3)", // subtle green shadow
+      borderWidth: "3px",
+      duration: 0.5,
+      ease: "power3.inOut",
+    });
+    tl.to(".dynamic-container", {
+      scale: isExpanded ? 1 : 0.95,
+      opacity: isExpanded ? 1 : 0.8,
+      duration: 0.5,
+      ease: "power3.inOut",
+    });
+
+    // Stagger animation for menu links and social links
+    tl.fromTo(
+      ".dynamic-link",
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.2, stagger: 0.1, ease: "power3.out" }
+    );
+  };
+
+  const animateCollapse = () => {
+    gsap.to(".dynamic-container", {
+      borderColor: "transparent",
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+      borderWidth: "1px",
+      duration: 0.5,
+      ease: "power3.inOut",
+    });
+    
   };
 
   // Toggle dark/light mode
@@ -24,112 +102,91 @@ function Header() {
     localStorage.setItem("theme", newTheme);
   };
 
-  // Apply theme on initial load
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("light");
-    }
-  }, [isDark]);
-
   return (
-    <header className="container mx-auto md:flex justify-between py-2 max-width">
-      {/* Logo Section */}
-      <div className="flex justify-between items-center py-2">
-        <NavLink to="/">
-          <img className="w-14" src={logos.logogradient} alt="logo" />
-        </NavLink>
-        <div onClick={toggleClass} className="cursor-pointer">
-          <svg
-            className="stroke-dark-heading dark:stroke-gray-300 md:hidden"
-            width="25"
-            height="20"
-            viewBox="0 0 16 13"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.4375 1.3125H14.5625M1.4375 11.3125H14.5625H1.4375ZM1.4375 6.3125H14.5625H1.4375Z"
-              strokeWidth="1.875"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <nav
-        className={`${
-          !isOpen ? "hidden" : null
-        } text-center md:flex justify-between`}
+    <header className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50">
+      {/* Dynamic Island */}
+      <div
+        className={`relative bg-black text-white flex items-center justify-between shadow-lg px-4 dynamic-container transition-all duration-500 ease-in-out ${
+          isExpanded
+            ? "w-[600px] h-[200px] rounded-[40px] border-4 border-white"
+            : "w-[180px] h-[50px] rounded-full border border-transparent"
+        }`}
+        onClick={() => setIsExpanded((prev) => !prev)}
       >
-        <ul className="dark:text-light-content font-medium md:flex items-center md:space-x-5 md:mr-10">
-          {["Home", "About", "Technologies", "Projects", "Template", "Contact"].map(
-            (page) => (
-              <li key={page} className="pb-1 md:pb-0">
-                <NavLink
-                  to={`/${page}`}
-                  onClick={toggleClass}
-                  activeClassName="active"
-                >
-                  {page}
-                </NavLink>
-              </li>
-            )
-          )}
-          <li>
-            <a
-              href={pdf}
-              download=""
-              className="mt-5 md:mt-0 btn bg-greenbg text-green-text text-xs inline-block rounded-3xl px-3 py-1"
-            >
-              CV
-            </a>
-          </li>
-        </ul>
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center">
+          <img
+            src={logos.logogradient}
+            alt="Logo"
+            className="w-8 h-8 rounded-full"
+          />
+        </NavLink>
 
-        <ul className="flex justify-evenly items-center my-5 md:my-0 md:space-x-5 md:mr-5">
-          <li>
-            <a href={linkedin} target="_blank" rel="noreferrer noopener">
-              <svg
-                className="dark:fill-light-heading fill-dark-heading"
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="..." />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href={github} target="_blank" rel="noreferrer noopener">
-              <svg
-                className="dark:fill-light-heading fill-dark-heading"
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="..." />
-              </svg>
-            </a>
-          </li>
-          {/* Dark/Light Mode Toggle */}
-          <li>
-            <button
-              onClick={toggleTheme}
-              className="p-2 bg-gray-200 dark:bg-gray-800 rounded-full"
+        {/* Bubble for Route */}
+        {!isExpanded && (
+          <div
+            className={`bubble absolute right-[-80px] top-1/2 transform -translate-y-1/2 bg-black text-green-400 text-xs font-medium px-5 h-[50px] rounded-full shadow-2xl flex items-center justify-center transition-all duration-500`}
+          >
+            {getIconForRoute(currentRoute)}
+          </div>
+        )}
+
+        {/* Expanded Content */}
+        {isExpanded && (
+          <div className="absolute inset-0 bg-black text-white rounded-[40px] p-6 shadow-xl flex flex-col justify-center items-center">
+            {/* Menu Links */}
+            <ul className="flex justify-around w-full mb-4">
+              {["Home", "About", "Technologies", "Projects", "Contact"].map((page) => (
+                <li key={page} className="dynamic-link">
+                  <NavLink
+                    to={`/${page.toLowerCase()}`}
+                    className="text-sm font-semibold hover:text-green-400 transition duration-300"
+                    onClick={() => setIsExpanded(false)}
+                  >
+                    {page}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <div className="w-full border-t border-gray-600"></div>
+            {/* Social Links and Dark Mode */}
+            <div className="flex justify-evenly w-full mt-2 dynamic-link items-center justify-center">
+            <a
+              href={socialMediaUrl.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition duration-300"
             >
-              {isDark ? "🌙" : "☀️"}
-            </button>
-          </li>
-        </ul>
-      </nav>
+              <img
+                src={linkedin}
+                alt="LinkedIn"
+                className="h-10 w-10"
+              />
+            </a>
+
+            {/* GitHub Icon */}
+            <a
+              href={socialMediaUrl.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition duration-300"
+            >
+              <img
+                src={github}
+                alt="GitHub"
+                className="h-10 w-10"
+              />
+            </a>
+              <button
+                onClick={toggleTheme}
+                className="h-10 w-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center"
+              >
+                {isDark ? "🌙" : "☀️"}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

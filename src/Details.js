@@ -48,6 +48,7 @@ export const personalDetails = {
   tagline: "Welcome to my website",
   img: profile,
   about: `My name is Denta Bramasta Hidayat. I was born in Bangkalan on 29 August 2002. I'm a 3rd years college student at Sepuluh Nopember Institute of Technology and majoring in department of Informatics. I love to create something new and share each other. feel free to browse my portofolio page and contact me directly ⚡️.`,
+  hobbies: ["Coding 💻", "Photography 📸", "Traveling ✈️", "Gaming 🎮", "Playing Guitar 🎸"],
 };
 
 // Enter your Social Media URLs here
