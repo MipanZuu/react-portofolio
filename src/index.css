@@ -21,8 +21,12 @@
   @apply dark:text-light-content text-dark-content;
 }
 
-body {
-  overflow-x: hidden;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
@@ -63,4 +67,16 @@ nav a.active {
 canvas {
   border-radius: 12px;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.travel-card {
+  flex-shrink: 0; /* Prevent shrinking */
+  height: 60vh; /* Optional height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  will-change: transform; /* Optimize animations */
 }

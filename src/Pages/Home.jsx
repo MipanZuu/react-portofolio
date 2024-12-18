@@ -52,12 +52,17 @@ function Home() {
   const secondPageRef = useRef();
   const hobbiesRefs = useRef([]);
 
-  const thirdWaveRef = useRef();
+  const secondWaveRef = useRef();
   const photographyRef = useRef();
 
   const photoRefs = useRef([]);
   const topGridRef = useRef();
   const bottomGridRef = useRef();
+
+  const thirdPageRef = useRef();
+  const thirdWaveRef = useRef();
+  const travelingRef = useRef();
+  const wrapperRef = useRef(null);
 
   const photos = [
     { src: sunset, alt: "Sunset Image" },
@@ -154,6 +159,7 @@ function Home() {
             },
           }
         );
+
         photoRefs.current.forEach((photo, index) => {
           gsap.fromTo(
             photo,
@@ -172,6 +178,40 @@ function Home() {
             }
           );
         });
+
+        // travelingRef.current.forEach((index) => {
+        //   gsap.fromTo(
+        //     index,
+        //     { opacity: 0, y: 50 },
+        //     {
+        //       opacity: 1,
+        //       y: 0,
+        //       duration: 1,
+        //       delay: index * 0.1,
+        //       scrollTrigger: {
+        //         trigger: index,
+        //         start: "top 100%",
+        //         end: "top 80%",
+        //         scrub: true,
+        //       },
+        //     }
+        //   );
+        // });
+
+        gsap.to(thirdWaveRef.current, {
+          borderTopLeftRadius: "0%",
+          borderTopRightRadius: "0%",
+          height: "80px",
+          duration: 1.5,
+          ease: "power3.inOut",
+          scrollTrigger: {
+            trigger: travelingRef.current, // Correct trigger
+            start: "top 100%",
+            end: "top 15%",
+            scrub: true,
+          },
+        });
+
         gsap.fromTo(
           topGridRef.current,
           { x: "20%" },
@@ -203,12 +243,27 @@ function Home() {
       });
 
       // Wave between Section 2 and 3
-      gsap.to(thirdWaveRef.current, {
+      gsap.to(secondWaveRef.current, {
         borderBottomLeftRadius: "0%",
         borderBottomRightRadius: "0%",
         height: "80px",
         scrollTrigger: {
           trigger: photographyRef.current,
+          start: "top 100%",
+          end: "top 50%",
+          scrub: true,
+        },
+      });
+
+      // Wave between Section 2 and 3
+      gsap.to(thirdWaveRef.current, {
+        borderTopLeftRadius: "0%",
+        borderTopRightRadius: "0%",
+        height: "80px",
+        duration: 1.5,
+        ease: "power3.inOut",
+        scrollTrigger: {
+          trigger: travelingRef.current,
           start: "top 100%",
           end: "top 15%",
           scrub: true,
@@ -220,7 +275,7 @@ function Home() {
       clearInterval(interval); // Cleanup interval
       ctx.revert(); // Cleanup GSAP
     };
-  }, []);
+  }, [greetings.length]);
 
   useEffect(() => {
     gsap.fromTo(
@@ -230,6 +285,44 @@ function Home() {
     );
   }, [currentGreeting]);
 
+  useEffect(() => {
+    const cards = gsap.utils.toArray(".travel-card");
+
+    // Pin the section and enable horizontal scrolling
+    const pinTrigger = ScrollTrigger.create({
+      trigger: travelingRef.current,
+      start: "top top",
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1, // Prevent flickering/glitches
+      end: () => `+=${wrapperRef.current.offsetWidth}`, // Total scroll length
+      scrub: 1,
+    });
+
+    // Horizontal Scroll Animation
+    const horizontalScroll = gsap.fromTo(
+      cards,
+      { xPercent: 50 }, // Start position
+      {
+        xPercent: -100 * (cards.length - 1), // Scroll through all cards
+        ease: "none",
+        scrollTrigger: {
+          trigger: travelingRef.current,
+          start: "top top",
+          end: () => `+=${wrapperRef.current.offsetWidth}`,
+          scrub: 1, // Smooth scrolling without snapping
+        },
+      }
+    );
+
+    // Cleanup ScrollTriggers to prevent duplication
+    return () => {
+      pinTrigger.kill();
+      horizontalScroll.kill();
+      ScrollTrigger.refresh();
+    };
+  }, []);
+
   return (
     <main className="overflow-hidden">
       {/* First Section */}
@@ -238,7 +331,15 @@ function Home() {
         className="relative flex flex-col items-center justify-center min-h-screen text-center text-gray-900 dark:text-white"
       >
         <div className="absolute z-10 flex flex-col items-center justify-center top-[40%] transform -translate-y-1/2">
-          <h1 className="text-4xl md:text-6xl font-bold">
+          {/* Glow Background */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute -top-10 -left-10 w-80 h-80 bg-purple-500 rounded-full opacity-50 blur-3xl"></div>
+            <div className="absolute -top-20 left-20 w-72 h-72 bg-blue-400 rounded-full opacity-40 blur-3xl"></div>
+            <div className="absolute top-20 right-10 w-64 h-64 bg-indigo-400 rounded-full opacity-30 blur-2xl"></div>
+          </div>
+
+          {/* Content */}
+          <h1 className="text-4xl md:text-6xl font-bold relative">
             <span
               ref={greetingRef}
               className={`pb-5 inline-block bg-clip-text text-transparent ${greetings[currentGreeting].gradient}`}
@@ -251,9 +352,11 @@ function Home() {
               {name}
             </span>
           </h1>
-          <h2 className="text-2xl md:text-4xl mt-2">{tagline}</h2>
+          <h2 className="text-2xl md:text-4xl mt-2 text-gray-200 relative">
+            {tagline}
+          </h2>
           <img
-            className="w-32 h-32 md:w-48 md:h-48 rounded-full mt-5 shadow-lg"
+            className="w-32 h-32 md:w-48 md:h-48 rounded-full mt-5 shadow-2xl relative"
             src={img}
             alt="Profile"
           />
@@ -321,7 +424,7 @@ function Home() {
       {/* Wave Transition */}
       <div
         ref={waveRef}
-        className="relative w-full h-[300px] bg-gray-100 dark:bg-gray-900"
+        className="relative w-full h-[300px] bg-gray-100 dark:bg-dark-mode2 border-t-2 border-t-blue-700"
         style={{
           borderTopLeftRadius: "50% 200px",
           borderTopRightRadius: "50% 200px",
@@ -331,7 +434,7 @@ function Home() {
       {/* Second Section */}
       <section
         ref={secondPageRef}
-        className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center text-center px-5"
+        className="min-h-screen bg-gray-100 dark:bg-dark-mode2 flex flex-col items-center justify-center text-center px-5"
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-10 text-gray-900 dark:text-white">
           My Hobbies & Interests
@@ -352,19 +455,10 @@ function Home() {
         </div>
       </section>
 
-      <div
-        ref={thirdWaveRef}
-        className="relative w-full h-[500px] bg-gray-100 dark:bg-gray-900"
-        style={{
-          borderBottomLeftRadius: "50% 200px",
-          borderBottomRightRadius: "50% 200px",
-        }}
-      ></div>
-
       {/* Photography Section */}
       <section
         ref={photographyRef}
-        className="min-h-screen flex flex-col items-center justify-center py-24"
+        className="min-h-screen flex flex-col items-center justify-center py-24 pb-[200px]"
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-10 text-gray-900 dark:text-white">
           My Photography Gallery
@@ -427,6 +521,133 @@ function Home() {
             </ParallaxTilt>
           ))}
         </div>
+      </section>
+
+      <section
+        ref={travelingRef}
+        className="min-h-screen flex flex-col items-center justify-center py-24 bg-gray-100 dark:bg-dark-mode2"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold mb-10 text-center text-gray-900 dark:text-white">
+          Traveling Section
+        </h2>
+        <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
+          Explore new places and enjoy amazing journeys!
+        </p>
+
+        {/* Horizontal Scroll Wrapper */}
+        <div
+          ref={wrapperRef}
+          className="flex space-x-6 md:space-x-10 min-h-[60vh] items-center overflow-hidden py-10"
+        >
+          {/* Card 1 */}
+          <div className="travel-card flex-shrink-0 w-[90%] md:w-[80%] lg:w-[60%] h-full flex flex-col md:flex-row bg-gray-800 text-white rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(0,0,0,0.1)] border-2 border-gray-700">
+            {/* Left Column: Text */}
+            <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-4 md:mb-6 text-orange-500">
+                CONSISTENT <br /> FROM CONCEPT <br /> TO LAUNCH
+              </h1>
+              <p className="text-sm md:text-lg font-semibold text-gray-300">
+                As both a designer and a developer, I bridge the gap between
+                these two fields.
+              </p>
+              <p className="text-xs md:text-sm mt-2 text-gray-400">
+                This ensures your vision is realized exactly as you imagined it,
+                without compromises or misunderstandings.
+              </p>
+            </div>
+
+            {/* Right Column: Placeholder Image */}
+            <div className="w-full md:w-1/2 flex justify-center items-center rounded-b-lg md:rounded-r-lg md:rounded-bl-none shadow-inner">
+              <div className="w-4/5 h-32 md:h-48 lg:h-64 flex items-center justify-center bg-gray-900 rounded-lg border border-gray-600">
+                <span className="text-gray-400 font-bold text-sm md:text-lg lg:text-2xl">
+                  Image Placeholder
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="travel-card flex-shrink-0 w-[90%] md:w-[80%] lg:w-[60%] h-full flex flex-col md:flex-row bg-gray-800 text-white rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(0,0,0,0.1)] border-2 border-gray-700">
+            {/* Left Column: Text */}
+            <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-4 md:mb-6 text-green-400">
+                RELAX AND <br /> ENJOY THE <br /> BEACHES
+              </h1>
+              <p className="text-sm md:text-lg font-semibold text-gray-300">
+                Discover pristine sands, clear waters, and ultimate relaxation.
+              </p>
+              <p className="text-xs md:text-sm mt-2 text-gray-400">
+                Find peace under the sun and enjoy the calming waves of the
+                beach.
+              </p>
+            </div>
+
+            {/* Right Column: Placeholder Image */}
+            <div className="w-full md:w-1/2 flex justify-center items-center rounded-b-lg md:rounded-r-lg md:rounded-bl-none shadow-inner">
+              <div className="w-4/5 h-32 md:h-48 lg:h-64 flex items-center justify-center bg-gray-900 rounded-lg border border-gray-600">
+                <span className="text-gray-400 font-bold text-sm md:text-lg lg:text-2xl">
+                  Image Placeholder
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="travel-card flex-shrink-0 w-[90%] md:w-[80%] lg:w-[60%] h-full flex flex-col md:flex-row bg-gray-800 text-white rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(0,0,0,0.1)] border-2 border-gray-700">
+            {/* Left Column: Text */}
+            <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-4 md:mb-6 text-red-400">
+                CONQUER <br /> THE BEAUTIFUL <br /> MOUNTAINS
+              </h1>
+              <p className="text-sm md:text-lg font-semibold text-gray-300">
+                Experience breathtaking views and unforgettable hikes.
+              </p>
+              <p className="text-xs md:text-sm mt-2 text-gray-400">
+                Climb to the peaks and witness nature in its raw and pure form.
+              </p>
+            </div>
+
+            {/* Right Column: Placeholder Image */}
+            <div className="w-full md:w-1/2 flex justify-center items-center rounded-b-lg md:rounded-r-lg md:rounded-bl-none shadow-inner">
+              <div className="w-4/5 h-32 md:h-48 lg:h-64 flex items-center justify-center bg-gray-900 rounded-lg border border-gray-600">
+                <span className="text-gray-400 font-bold text-sm md:text-lg lg:text-2xl">
+                  Image Placeholder
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="travel-card flex-shrink-0 w-[90%] md:w-[80%] lg:w-[60%] h-full flex flex-col md:flex-row bg-gray-800 text-white rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(0,0,0,0.1)] border-2 border-gray-700">
+            {/* Left Column: Text */}
+            <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-4 md:mb-6 text-purple-400">
+                EXPLORE <br /> THE VIBRANT <br /> CITIES
+              </h1>
+              <p className="text-sm md:text-lg font-semibold text-gray-300">
+                Discover bustling streets, lights, and endless possibilities.
+              </p>
+              <p className="text-xs md:text-sm mt-2 text-gray-400">
+                Experience the energy, culture, and beauty of city life.
+              </p>
+            </div>
+
+            {/* Right Column: Placeholder Image */}
+            <div className="w-full md:w-1/2 flex justify-center items-center rounded-b-lg md:rounded-r-lg md:rounded-bl-none shadow-inner">
+              <div className="w-4/5 h-32 md:h-48 lg:h-64 flex items-center justify-center bg-gray-900 rounded-lg border border-gray-600">
+                <span className="text-gray-400 font-bold text-sm md:text-lg lg:text-2xl">
+                  Image Placeholder
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="min-h-screen flex flex-col items-center justify-center py-24">
+        <h2 className="text-4xl md:text-5xl font-bold mb-10 text-gray-900 dark:text-white">
+          test
+        </h2>
       </section>
     </main>
   );
