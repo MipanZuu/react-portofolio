@@ -4,24 +4,30 @@ import { logos, socialMediaUrl } from "../Details";
 import github from "../assets/github.svg";
 import linkedin from "../assets/linkedin.svg";
 import gsap from "gsap";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import ComputerOutlinedIcon from '@mui/icons-material/ComputerOutlined';
-import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
-import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ComputerOutlinedIcon from "@mui/icons-material/ComputerOutlined";
+import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
+import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
 
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentRoute, setCurrentRoute] = useState("Home");
-  const [isDark, setIsDark] = useState(localStorage.getItem("theme") === "dark");
+  const [isDark, setIsDark] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
   const location = useLocation();
 
   const getIconForRoute = (route) => {
     switch (route.toLowerCase()) {
       case "home":
-        return <HomeOutlinedIcon className="text-green-400" fontSize="medium" />;
+        return (
+          <HomeOutlinedIcon className="text-green-400" fontSize="medium" />
+        );
       case "about":
-        return <InfoOutlinedIcon className="text-green-400" fontSize="medium" />;
+        return (
+          <InfoOutlinedIcon className="text-green-400" fontSize="medium" />
+        );
       case "technologies":
         return (
           <ComputerOutlinedIcon className="text-green-400" fontSize="medium" />
@@ -32,7 +38,10 @@ function Header() {
         );
       case "contact":
         return (
-          <MailOutlineOutlinedIcon className="text-green-400" fontSize="medium" />
+          <MailOutlineOutlinedIcon
+            className="text-green-400"
+            fontSize="medium"
+          />
         );
       default:
         return null; // Default behavior if no icon is found
@@ -40,7 +49,8 @@ function Header() {
   };
 
   useEffect(() => {
-    const route = location.pathname === "/" ? "Home" : location.pathname.slice(1);
+    const route =
+      location.pathname === "/" ? "Home" : location.pathname.slice(1);
     setCurrentRoute(route);
 
     // Collapse the Dynamic Island automatically
@@ -91,7 +101,6 @@ function Header() {
       duration: 0.5,
       ease: "power3.inOut",
     });
-    
   };
 
   // Toggle dark/light mode
@@ -136,47 +145,41 @@ function Header() {
           <div className="absolute inset-0 bg-black text-white rounded-[40px] p-6 shadow-xl flex flex-col justify-center items-center">
             {/* Menu Links */}
             <ul className="flex justify-around w-full mb-4">
-              {["Home", "About", "Technologies", "Projects", "Contact"].map((page) => (
-                <li key={page} className="dynamic-link">
-                  <NavLink
-                    to={`/${page.toLowerCase()}`}
-                    className="text-sm font-semibold hover:text-green-400 transition duration-300"
-                    onClick={() => setIsExpanded(false)}
-                  >
-                    {page}
-                  </NavLink>
-                </li>
-              ))}
+              {["Home", "About", "Technologies", "Projects", "Contact"].map(
+                (page) => (
+                  <li key={page} className="dynamic-link">
+                    <NavLink
+                      to={`/${page.toLowerCase()}`}
+                      className="text-sm font-semibold hover:text-green-400 transition duration-300"
+                      onClick={() => setIsExpanded(false)}
+                    >
+                      {page}
+                    </NavLink>
+                  </li>
+                )
+              )}
             </ul>
             <div className="w-full border-t border-gray-600"></div>
             {/* Social Links and Dark Mode */}
             <div className="flex justify-evenly w-full mt-2 dynamic-link items-center justify-center">
-            <a
-              href={socialMediaUrl.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-110 transition duration-300"
-            >
-              <img
-                src={linkedin}
-                alt="LinkedIn"
-                className="h-10 w-10"
-              />
-            </a>
+              <a
+                href={socialMediaUrl.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 transition duration-300"
+              >
+                <img src={linkedin} alt="LinkedIn" className="h-10 w-10" />
+              </a>
 
-            {/* GitHub Icon */}
-            <a
-              href={socialMediaUrl.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-110 transition duration-300"
-            >
-              <img
-                src={github}
-                alt="GitHub"
-                className="h-10 w-10"
-              />
-            </a>
+              {/* GitHub Icon */}
+              <a
+                href={socialMediaUrl.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 transition duration-300"
+              >
+                <img src={github} alt="GitHub" className="h-10 w-10" />
+              </a>
               <button
                 onClick={toggleTheme}
                 className="h-10 w-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center"
