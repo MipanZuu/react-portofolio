@@ -75,13 +75,13 @@ function Header() {
       borderColor: "rgba(255, 255, 255, 0.4)",
       boxShadow: "0px 0px 20px rgba(0, 255, 0, 0.3)", // subtle green shadow
       borderWidth: "3px",
-      duration: 0.5,
+      duration: 0.3,
       ease: "power3.inOut",
     });
     tl.to(".dynamic-container", {
       scale: isExpanded ? 1 : 0.95,
       opacity: isExpanded ? 1 : 0.8,
-      duration: 0.5,
+      duration: 0.3,
       ease: "power3.inOut",
     });
 
@@ -117,7 +117,7 @@ function Header() {
       <div
         className={`relative bg-black text-white flex items-center justify-between shadow-lg px-4 dynamic-container transition-all duration-500 ease-in-out ${
           isExpanded
-            ? "w-[600px] h-[200px] rounded-[40px] border-4 border-white"
+            ? "w-[200px] h-[200px] md:w-[600px] md:h-[200px] rounded-[40px] border-4 border-white"
             : "w-[180px] h-[50px] rounded-full border border-transparent"
         }`}
         onClick={() => setIsExpanded((prev) => !prev)}
@@ -144,7 +144,7 @@ function Header() {
         {isExpanded && (
           <div className="absolute inset-0 bg-black text-white rounded-[40px] p-6 shadow-xl flex flex-col justify-center items-center">
             {/* Menu Links */}
-            <ul className="flex justify-around w-full mb-4">
+            <ul className="flex flex-wrap justify-center md:justify-around w-full mb-4 gap-4 md:gap-6">
               {["Home", "About", "Technologies", "Projects", "Contact"].map(
                 (page) => (
                   <li key={page} className="dynamic-link">
@@ -159,16 +159,23 @@ function Header() {
                 )
               )}
             </ul>
+
+            {/* Divider */}
             <div className="w-full border-t border-gray-600"></div>
+
             {/* Social Links and Dark Mode */}
-            <div className="flex justify-evenly w-full mt-2 dynamic-link items-center justify-center">
+            <div className="flex flex-wrap justify-center gap-6 w-full mt-4 dynamic-link items-center">
               <a
                 href={socialMediaUrl.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition duration-300"
               >
-                <img src={linkedin} alt="LinkedIn" className="h-10 w-10" />
+                <img
+                  src={linkedin}
+                  alt="LinkedIn"
+                  className="h-8 w-8 md:h-10 md:w-10"
+                />
               </a>
 
               {/* GitHub Icon */}
@@ -178,11 +185,16 @@ function Header() {
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition duration-300"
               >
-                <img src={github} alt="GitHub" className="h-10 w-10" />
+                <img
+                  src={github}
+                  alt="GitHub"
+                  className="h-8 w-8 md:h-10 md:w-10"
+                />
               </a>
+
               <button
                 onClick={toggleTheme}
-                className="h-10 w-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center"
+                className="h-8 w-8 md:h-10 md:w-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center"
               >
                 {isDark ? "🌙" : "☀️"}
               </button>
