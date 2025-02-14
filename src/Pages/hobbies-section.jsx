@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import sunset from "../assets/photos/sunset.jpeg";
@@ -12,30 +13,36 @@ function HobbiesSection() {
       image: sunset,
       tags: ["MUSIC", "ART"],
       color: "bg-[#3D8D7A] dark:bg-[#27374D] shadow-gray-800/40",
+      link: "/hiking",
     },
     {
       title: "Hiking & Outdoors",
       image: sunset,
       tags: ["ADVENTURE", "NATURE"],
       color: "bg-[#B3D8A8] dark:bg-[#526D82] shadow-gray-700/40",
+      link: "/hiking",
     },
     {
       title: "Tech & Programming",
       image: sunset,
       tags: ["CODE", "TECH"],
       color: "bg-[#FBFFE4] dark:bg-[#9DB2BF] shadow-gray-600/40",
+      link: "/hiking",
     },
     {
       title: "Photography",
       image: sunset,
       tags: ["PHOTOGRAPHY", "VISUAL"],
       color: "bg-[#A3D1C6] dark:bg-[#DDE6ED] shadow-gray-500/40",
+      link: "/hiking",
     },
   ];
 
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
   const randomPositions = useRef([]);
+  const navigate = useNavigate();
+  const [zoomed, setZoomed] = useState(false);
 
   // Function to generate a random number once
   const getRandom = (min, max) => Math.random() * (max - min) + min;
@@ -99,6 +106,49 @@ function HobbiesSection() {
     });
   }, []);
 
+  const handleClick = (index, link) => {
+    if (zoomed) return;
+    setZoomed(true);
+
+    const card = cardsRef.current[index];
+    const rect = card.getBoundingClientRect(); // Get initial position
+
+    // Set the card to fixed position with its current size
+    gsap.set(card, {
+      position: "fixed",
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+      height: rect.height,
+      zIndex: 1000, // Ensure it's above everything
+    });
+
+    // Fade out other cards first
+    gsap.to(
+      cardsRef.current.filter((_, i) => i !== index),
+      {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      }
+    );
+
+    // Move and scale the clicked card smoothly to full screen (x=0, y=0)
+    gsap.to(card, {
+      x: -rect.left, // Move to the left to align to (0,0)
+      y: -rect.top, // Move up to align to (0,0)
+      rotate: 0, // Reset rotation
+      width: "100vw",
+      height: "100vh",
+      borderRadius: "0px",
+      duration: 1, // Smooth transition duration
+      ease: "power2.out",
+      onComplete: () => {
+        navigate(link);
+      },
+    });
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -111,6 +161,7 @@ function HobbiesSection() {
           return (
             <div
               key={index}
+              onClick={() => handleClick(index, hobby.link)}
               ref={(el) => (cardsRef.current[index] = el)}
               className={`absolute w-full h-full shadow-xl rounded-xl p-2 md:p-8 flex flex-col items-center justify-center text-center ${hobby.color}`}
               style={{

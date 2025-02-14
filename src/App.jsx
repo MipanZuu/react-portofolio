@@ -4,8 +4,10 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
@@ -13,133 +15,97 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Projects from "./Pages/Projects";
 import Technologies from "./Pages/Technologies";
-import "./transitions.css";
 import Template from "./Pages/Template/Template";
 import InstallmentsPage from "./Pages/Template/InstallmentsPage";
 import ThemesPage from "./Pages/Template/ThemesPage";
 import HeaderPage from "./Pages/Template/HeaderPage";
 import Greetings from "./Pages/Greetings";
-import Chatbot from "./Pages/chatbox";
+import "./transitions.css";
+import HikingPage from "./Pages/Hobby/hiking";
+
+function AnimatedRoutes() {
+  const location = useLocation(); // Required for animation transitions
+  const pagesWithoutTransition = ["/hiking"];
+  return (
+    <>
+      {pagesWithoutTransition.includes(location.pathname) ? (
+        // Directly render pages without animation
+        <Routes location={location}>
+          <Route path="/hiking" element={<HikingPage />} />
+        </Routes>
+      ) : (
+        // Apply transition effects to other pages
+        <TransitionGroup>
+          <CSSTransition
+            key={location.pathname}
+            classNames="fade"
+            timeout={300}
+          >
+            <Routes location={location}>
+              <Route path="/" element={<Navigate to="/Home" replace />} />
+              <Route path="/Home" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/Technologies" element={<Technologies />} />
+              <Route path="/Template" element={<Template />} />
+              <Route
+                path="/Template/Guides/Installments"
+                element={<InstallmentsPage />}
+              />
+              <Route path="/Template/Guides/Themes" element={<ThemesPage />} />
+              <Route
+                path="/Template/Components/Header"
+                element={<HeaderPage />}
+              />
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
+      )}
+    </>
+  );
+}
 
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
+
   return (
-    <Router>
-      <Header />
-      <Routes>
-        {/* Redirect from "/" to "/Home" */}
-        <Route path="/" element={<Navigate to="/Home" replace />} />
+    <HelmetProvider>
+      <Router>
+        <Helmet>
+          <title>Denta's Portfolio</title>
+          <meta
+            name="description"
+            content="Explore my portfolio showcasing my projects, skills, hobbies, and technologies I work with."
+          />
+          <meta
+            name="keywords"
+            content="portfolio, developer, projects, skills, react, fullstack, denta bramasta hidayat"
+          />
+          <meta property="og:title" content="My Portfolio" />
+          <meta
+            property="og:description"
+            content="Explore my projects and skills."
+          />
+          <meta
+            property="og:image"
+            content="https://yourwebsite.com/preview-image.jpg"
+          />
+          <meta property="og:url" content="https://dentabramasta.com" />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
 
-        {/* Home Route */}
-        <Route
-          path="/Home"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="home" classNames="fade" timeout={300}>
-                <Home />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
+        <Header />
+        <AnimatedRoutes />
+        <Footer />
 
-        {/* About Route */}
-        <Route
-          path="/about"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="about" classNames="fade" timeout={300}>
-                <About />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-
-        {/* Contact Route */}
-        <Route
-          path="/contact"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="contact" classNames="fade" timeout={300}>
-                <Contact />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-
-        {/* Projects Route */}
-        <Route
-          path="/projects"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="projects" classNames="fade" timeout={300}>
-                <Projects />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-
-        {/* Template Routes */}
-        <Route
-          path="/Template"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="Template" classNames="fade" timeout={300}>
-                <Template />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-        <Route
-          path="/Template/Guides/Installments"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="installments" classNames="fade" timeout={300}>
-                <InstallmentsPage />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-        <Route
-          path="/Template/Guides/Themes"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="themes" classNames="fade" timeout={300}>
-                <ThemesPage />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-        <Route
-          path="/Template/Components/Header"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="header" classNames="fade" timeout={300}>
-                <HeaderPage />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-
-        {/* Technologies Route */}
-        <Route
-          path="/Technologies"
-          element={
-            <TransitionGroup>
-              <CSSTransition key="technologies" classNames="fade" timeout={300}>
-                <Technologies />
-              </CSSTransition>
-            </TransitionGroup>
-          }
-        />
-      </Routes>
-      <Footer />
-      {showWelcome && (
-        <div className="absolute inset-0 z-50">
-          <Greetings onComplete={() => setShowWelcome(false)} />
-        </div>
-      )}
-      <Chatbot />
-    </Router>
+        {showWelcome && (
+          <div className="absolute inset-0 z-50">
+            <Greetings onComplete={() => setShowWelcome(false)} />
+          </div>
+        )}
+      </Router>
+    </HelmetProvider>
   );
 }
 
