@@ -27,7 +27,7 @@ function TravelingSection() {
       cards,
       { xPercent: 200 }, // Start position
       {
-        xPercent: -150 * (cards.length - 1), // Scroll through all cards
+        xPercent: -100 * (cards.length - 1), // Scroll through all cards
         ease: "none",
         scrollTrigger: {
           trigger: travelingRef.current,
@@ -63,7 +63,7 @@ function TravelingSection() {
         {/* Scrollable Cards Container */}
         <div
           ref={wrapperRef}
-          className="flex space-x-4 md:space-x-10 min-h-[50vh] md:min-h-[60vh] w-max items-center overflow-x-auto py-10 px-6 md:px-0"
+          className="flex space-x-4 md:space-x-10 min-h-[50vh] md:min-h-[60vh] w-max items-center  py-10 px-6 md:px-0"
         >
           {[
             {

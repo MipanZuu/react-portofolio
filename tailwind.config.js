@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: "Poppins, sans-serif",
+        primary: "Chrusty Rock, sans-serif",
         secondary: "Ubuntu",
       },
       colors: {

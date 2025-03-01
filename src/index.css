@@ -4,6 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Chrusty Rock";
+  src: url("../public/font/ChrustyRock.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Chrusty Rock";
+  src: url("../public/font/Newretrostyle3d-ygjm.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-chrusty {
+  font-family: "Chrusty Rock", sans-serif;
+}
+
+.font-retro {
+  font-family: "New Retro Style 3D", sans-serif;
+}
+
 .max-width {
   @apply lg:mx-auto lg:px-24 xl:px-48 px-5;
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import sunset from "../assets/photos/sunset.jpeg";
+import arjuno from "../assets/mountains/Arjuno.JPG";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,28 +13,28 @@ function HobbiesSection() {
       title: "Guitar & Music",
       image: sunset,
       tags: ["MUSIC", "ART"],
-      color: "bg-[#3D8D7A] dark:bg-[#27374D] shadow-gray-800/40",
+      color: "bg-[#3A3D46] dark:bg-[#1E293B] shadow-gray-900/40",
       link: "/hiking",
     },
     {
       title: "Hiking & Outdoors",
-      image: sunset,
+      image: arjuno,
       tags: ["ADVENTURE", "NATURE"],
-      color: "bg-[#B3D8A8] dark:bg-[#526D82] shadow-gray-700/40",
+      color: "bg-[#4B5563] dark:bg-[#374151] shadow-gray-800/40",
       link: "/hiking",
     },
     {
       title: "Tech & Programming",
       image: sunset,
       tags: ["CODE", "TECH"],
-      color: "bg-[#FBFFE4] dark:bg-[#9DB2BF] shadow-gray-600/40",
+      color: "bg-[#475569] dark:bg-[#1F2937] shadow-gray-700/40",
       link: "/hiking",
     },
     {
       title: "Photography",
       image: sunset,
       tags: ["PHOTOGRAPHY", "VISUAL"],
-      color: "bg-[#A3D1C6] dark:bg-[#DDE6ED] shadow-gray-500/40",
+      color: "bg-[#374151] dark:bg-[#1A3636] shadow-gray-600/40",
       link: "/hiking",
     },
   ];
@@ -163,7 +164,7 @@ function HobbiesSection() {
               key={index}
               onClick={() => handleClick(index, hobby.link)}
               ref={(el) => (cardsRef.current[index] = el)}
-              className={`absolute w-full h-full shadow-xl rounded-xl p-2 md:p-8 flex flex-col items-center justify-center text-center ${hobby.color}`}
+              className={`absolute w-full h-full shadow-xl rounded-[4rem] p-2 md:p-8 flex flex-col items-center justify-center text-center ${hobby.color}`}
               style={{
                 zIndex: hobbiesDenta.length - index,
                 transform: `rotate(${rotate}deg) translate(${x}px, ${y}px)`,
@@ -181,7 +182,7 @@ function HobbiesSection() {
               </div>
 
               {/* TITLE - Uses a Modern Font */}
-              <h2 className="text-3xl md:text-6xl font-extrabold font-sans text-gray-900 dark:text-white mt-2">
+              <h2 className="font-chrusty text-3xl md:text-6xl font-extrabold font-sans text-gray-900 dark:text-white mt-2">
                 {hobby.title}
               </h2>
 

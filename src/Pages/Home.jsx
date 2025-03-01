@@ -199,8 +199,6 @@ function Home() {
       {/* Second Section */}
       <HobbiesSection />
       <TravelingSection />
-
-      <section className="h-screen">test</section>
     </main>
   );
 }

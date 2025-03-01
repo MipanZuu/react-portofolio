@@ -19,11 +19,11 @@ import figma from "./assets/techstack/figma.png";
 import laravel from "./assets/techstack/laravel.png";
 import mySQL from "./assets/techstack/mySQL.png";
 import spring from "./assets/techstack/springboot.png";
-import webstorm from "./assets/techstack/webstorm.png"
-import intellij from "./assets/techstack/Intellij.png"
-import c from "./assets/techstack/c.png"
-import cpp from "./assets/techstack/cpp.png"
-import python from "./assets/techstack/python.png"
+import webstorm from "./assets/techstack/webstorm.png";
+import intellij from "./assets/techstack/Intellij.png";
+import c from "./assets/techstack/c.png";
+import cpp from "./assets/techstack/cpp.png";
+import python from "./assets/techstack/python.png";
 import pdf from "./assets/projects/CV_Denta Bramasta Hidayat.pdf";
 
 // Porject Images
@@ -48,7 +48,13 @@ export const personalDetails = {
   tagline: "Welcome to my website",
   img: profile,
   about: `My name is Denta Bramasta Hidayat. I was born in Bangkalan on 29 August 2002. I'm a 3rd years college student at Sepuluh Nopember Institute of Technology and majoring in department of Informatics. I love to create something new and share each other. feel free to browse my portofolio page and contact me directly ⚡️.`,
-  hobbies: ["Coding 💻", "Photography 📸", "Traveling ✈️", "Gaming 🎮", "Playing Guitar 🎸"],
+  hobbies: [
+    "Coding 💻",
+    "Photography 📸",
+    "Traveling ✈️",
+    "Gaming 🎮",
+    "Playing Guitar 🎸",
+  ],
 };
 
 // Enter your Social Media URLs here
@@ -176,9 +182,9 @@ export const techStackDetails = {
   spring: spring,
   webstorm: webstorm,
   intellij: intellij,
-  c:c,
-  cpp:cpp,
-  python:python,
+  c: c,
+  cpp: cpp,
+  python: python,
 };
 
 // Enter your Project Details here

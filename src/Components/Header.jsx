@@ -9,14 +9,27 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ComputerOutlinedIcon from "@mui/icons-material/ComputerOutlined";
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
 import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
+import TerrainOutlinedIcon from "@mui/icons-material/TerrainOutlined";
 
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentRoute, setCurrentRoute] = useState("Home");
+  const storedTheme = localStorage.getItem("theme");
   const [isDark, setIsDark] = useState(
-    localStorage.getItem("theme") === "dark"
+    storedTheme ? storedTheme === "dark" : true
   );
+
   const location = useLocation();
+
+  // 🟢 Apply theme on mount
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
 
   const getIconForRoute = (route) => {
     switch (route.toLowerCase()) {
@@ -42,6 +55,10 @@ function Header() {
             className="text-green-400"
             fontSize="medium"
           />
+        );
+      case "hiking":
+        return (
+          <TerrainOutlinedIcon className="text-green-400" fontSize="medium" />
         );
       default:
         return null; // Default behavior if no icon is found
