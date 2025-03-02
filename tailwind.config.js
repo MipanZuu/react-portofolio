@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        pixel: ['"Press Start 2P"', "cursive"],
         primary: "Chrusty Rock, sans-serif",
         secondary: "Ubuntu",
       },

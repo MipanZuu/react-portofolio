@@ -2,40 +2,36 @@ import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import sunset from "../assets/photos/sunset.jpeg";
-import arjuno from "../assets/mountains/Arjuno.JPG";
+import sunset from "../../assets/photos/sunset.jpeg";
+import arjuno from "../../assets/mountains/Arjuno.JPG";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function HobbiesSection() {
   const hobbiesDenta = [
     {
-      title: "Guitar & Music",
-      image: sunset,
-      tags: ["MUSIC", "ART"],
-      color: "bg-[#3A3D46] dark:bg-[#1E293B] shadow-gray-900/40",
-      link: "/hiking",
-    },
-    {
       title: "Hiking & Outdoors",
       image: arjuno,
+      description: "Exploring mountains, trails, and nature.",
       tags: ["ADVENTURE", "NATURE"],
-      color: "bg-[#4B5563] dark:bg-[#374151] shadow-gray-800/40",
+      color: "backdrop-blur-lg bg-white/10 dark:bg-black/20 shadow-xl drop-shadow-xl hover:shadow-gray-700/50 transition-shadow",
       link: "/hiking",
     },
     {
       title: "Tech & Programming",
       image: sunset,
+      description: "Building software and solving problems.",
       tags: ["CODE", "TECH"],
-      color: "bg-[#475569] dark:bg-[#1F2937] shadow-gray-700/40",
-      link: "/hiking",
+      color: "backdrop-blur-lg bg-white/10 dark:bg-black/20 shadow-xl drop-shadow-xl hover:shadow-gray-500/50 transition-shadow",
+      link: "/tech",
     },
     {
       title: "Photography",
       image: sunset,
+      description: "Capturing the world through a lens.",
       tags: ["PHOTOGRAPHY", "VISUAL"],
-      color: "bg-[#374151] dark:bg-[#1A3636] shadow-gray-600/40",
-      link: "/hiking",
+      color: "backdrop-blur-lg bg-white/10 dark:bg-black/20 shadow-xl drop-shadow-xl shadow-lg hover:shadow-gray-400/50 transition-shadow",
+      link: "/photography",
     },
   ];
 
@@ -98,12 +94,8 @@ function HobbiesSection() {
           gsap.to(card, { scale: 1, duration: 0.3 });
         });
 
-      card.addEventListener("mouseenter", () =>
-        gsap.to(card, { scale: 1.02, duration: 0.3 })
-      );
-      card.addEventListener("mouseleave", () =>
-        gsap.to(card, { scale: 1, duration: 0.3 })
-      );
+      card.addEventListener("mouseenter", () => gsap.to(card, { scale: 1.02, duration: 0.3 }));
+      card.addEventListener("mouseleave", () => gsap.to(card, { scale: 1, duration: 0.3 }));
     });
   }, []);
 
@@ -151,10 +143,7 @@ function HobbiesSection() {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="h-screen flex items-center justify-center bg-[#F7F2EC] dark:bg-dark-mode mx-auto"
-    >
+    <section ref={sectionRef} className="h-screen flex items-center justify-center bg-transparent mx-auto">
       <div className="relative w-full max-w-[60vw] md:max-w-[50vw] h-[50vh] md:h-[70vh] flex items-center justify-center">
         {hobbiesDenta.map((hobby, index) => {
           const { x, y, rotate } = randomPositions.current[index];
@@ -164,7 +153,7 @@ function HobbiesSection() {
               key={index}
               onClick={() => handleClick(index, hobby.link)}
               ref={(el) => (cardsRef.current[index] = el)}
-              className={`absolute w-full h-full shadow-xl rounded-[4rem] p-2 md:p-8 flex flex-col items-center justify-center text-center ${hobby.color}`}
+              className={`absolute w-full h-full shadow-xl rounded-[2rem] p-2 md:p-8 flex flex-col items-center justify-center text-center ${hobby.color}`}
               style={{
                 zIndex: hobbiesDenta.length - index,
                 transform: `rotate(${rotate}deg) translate(${x}px, ${y}px)`,
@@ -174,25 +163,16 @@ function HobbiesSection() {
             >
               {/* IMAGE */}
               <div className="w-[95%] h-[70%] md:w-[90%] md:h-[70%] overflow-hidden rounded-lg shadow-md">
-                <img
-                  src={hobby.image}
-                  alt={hobby.title}
-                  className="w-full h-full object-cover"
-                />
+                <img src={hobby.image} alt={hobby.title} className="w-full h-full object-cover" />
               </div>
 
               {/* TITLE - Uses a Modern Font */}
-              <h2 className="font-chrusty text-3xl md:text-6xl font-extrabold font-sans text-gray-900 dark:text-white mt-2">
-                {hobby.title}
-              </h2>
+              <h2 className="font-chrusty text-3xl md:text-6xl font-extrabold font-sans text-gray-900 dark:text-white mt-2">{hobby.title}</h2>
 
               {/* TAGS */}
               <div className="flex gap-2 mt-2">
                 {hobby.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="bg-gray-900 dark:bg-gray-700 text-white px-2 md:px-3 py-1 text-xs md:text-sm rounded"
-                  >
+                  <span key={i} className="bg-gray-900 dark:bg-gray-700 text-white px-2 md:px-3 py-1 text-xs md:text-sm rounded">
                     {tag}
                   </span>
                 ))}

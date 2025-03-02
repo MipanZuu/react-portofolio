@@ -48,18 +48,12 @@ export const personalDetails = {
   tagline: "Welcome to my website",
   img: profile,
   about: `My name is Denta Bramasta Hidayat. I was born in Bangkalan on 29 August 2002. I'm a 3rd years college student at Sepuluh Nopember Institute of Technology and majoring in department of Informatics. I love to create something new and share each other. feel free to browse my portofolio page and contact me directly ⚡️.`,
-  hobbies: [
-    "Coding 💻",
-    "Photography 📸",
-    "Traveling ✈️",
-    "Gaming 🎮",
-    "Playing Guitar 🎸",
-  ],
+  hobbies: ["Coding 💻", "Photography 📸", "Traveling ✈️", "Gaming 🎮", "Playing Guitar 🎸"],
 };
 
 // Enter your Social Media URLs here
 export const socialMediaUrl = {
-  linkedin: "https://www.linkedin.com/in/denta-bramasta-50229a204/",
+  linkedin: "https://www.linkedin.com/in/denta-bramasta-hidayat-50229a204/",
   github: "https://github.com/MipanZuu/",
   twitter: "https://twitter.com/BebekTerbangS",
   instagram: "https://www.instagram.com/dentabramastaa/",
@@ -109,6 +103,7 @@ export const workDetails = [
     Type: "Part-Time",
     Duration: "August 2022 - August 2022",
   },
+
   {
     Position: "Teaching Assistant of Basic Programming IUP 2022",
     Company: `Department of Informatics`,
