@@ -44,9 +44,13 @@
   @apply dark:text-light-content text-dark-content;
 }
 
+
+* {
+  scroll-behavior: auto !important; /* Ensure native smooth scrolling is off */
+}
+
 body,
 html {
-  cursor: url("/public/duck.png") 32 32, auto;
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal scrolling */

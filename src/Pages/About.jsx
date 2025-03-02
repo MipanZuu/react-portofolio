@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { personalDetails, workDetails, eduDetails } from "../Details";
+import { Helmet } from "react-helmet-async";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +31,16 @@ function Timeline() {
 
   return (
     <section className="relative max-w-5xl mx-auto pt-20 pb-20">
+      <Helmet>
+        <title>Denta Bramasta - Work Experience & Education</title>
+        <meta name="description" content="Explore Denta Bramasta Hidayat's professional experience and education timeline. Discover my journey in software development and engineering." />
+        <meta name="keywords" content="Denta Bramasta, work experience, education, software engineer, fullstack developer, timeline" />
+        <meta property="og:title" content="Denta Bramasta - Work Experience & Education" />
+        <meta property="og:description" content="Explore my professional journey, work experience, and education timeline." />
+        <meta property="og:image" content="https://yourwebsite.com/timeline-preview.jpg" />
+        <meta property="og:url" content="https://dentabramasta.com/about" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       <section className="relative mx-auto pt-20 pb-20 px-6">
         <div className="relative bg-opacity-50 backdrop-blur-lg p-8 rounded-lg border border-gray-700 shadow-lg shadow-cyan-500/30 hover:shadow-blue-500/50 transition-all duration-500">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white text-center tracking-wide">

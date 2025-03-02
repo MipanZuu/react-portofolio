@@ -6,6 +6,7 @@ import HobbiesSection from "./hobbies-section";
 import TravelingSection from "./traveling-section";
 import MarqueeText from "./MarqueeText";
 import ScrambleText from "./ScrambleText";
+import { Helmet } from "react-helmet-async";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,6 +64,16 @@ function Home() {
 
   return (
     <main className="overflow-hidden bg-transparent custom-cursor">
+      <Helmet>
+        <title>Denta Bramasta Hidayat - Fullstack Developer</title>
+        <meta name="description" content="Welcome to my portfolio! I am a fullstack developer specializing in modern web technologies, UI/UX, and performance optimization." />
+        <meta name="keywords" content="Denta Bramasta Hidayat, fullstack developer, software engineer, frontend, backend, JavaScript, React, Next.js, Node.js, Tailwind CSS, UI/UX" />
+        <meta property="og:title" content="Denta Bramasta Hidayat - Fullstack Developer" />
+        <meta property="og:description" content="Explore my projects and skills in frontend, backend, and web development." />
+        <meta property="og:image" content="https://yourwebsite.com/preview-image.jpg" />
+        <meta property="og:url" content="https://dentabramasta.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       {/* First Section */}
       <section ref={topSectionRef} className="relative flex flex-col items-center justify-center min-h-screen text-center text-gray-900 dark:text-white">
         <div className="absolute z-10 flex flex-col items-center justify-center top-[40%] transform -translate-y-1/2">
