@@ -82,11 +82,11 @@ function App() {
         <AnimatedRoutes />
         <Footer />
 
-        {showWelcome && (
+        {/* {showWelcome && (
           <div className="absolute inset-0 z-50">
             <Greetings onComplete={() => setShowWelcome(false)} />
           </div>
-        )}
+        )} */}
 </SmoothScrollWrapper>
       </Router>
     </HelmetProvider>
